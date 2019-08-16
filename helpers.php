@@ -4,7 +4,7 @@
  *
  * @author    Aidan Hislop | https://github.com/amhislop
  * @version   1.0.0
- * @license   http://opensource.org/licenses/gpl-license.php  GNU Public License
+ * @license   MIT
  */
 
 /**

@@ -1,6 +1,8 @@
-# @ahislop/php-snippets-for-js-devs
+# @amhislop/php-snippets-for-js-devs
 
 # PHP Snippets for JavaScript Developers
+![](https://img.shields.io/badge/version-1.0.0-blue?style=flat)
+![](https://img.shields.io/badge/PHP-7.1+-blue?style=flat&logo=php)
 
 ![](/php-js-dummy-logo.svg) 
 ------------------------
