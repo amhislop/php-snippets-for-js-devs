@@ -226,7 +226,7 @@ $entries = array_entries($key_value_array);
 // ];
 ```
 
-### array_restore
+### array_from_entries
 
 #### Definition
 
@@ -235,6 +235,8 @@ array_from_entries( array $array ) : array
 ```
 
 The array*restore function restores a new *[key => value]\_ array based on the arrays provided by the given array.
+
+**JS Equivilant**: _Object.fromEntries()_
 
 #### Parameters
 
