@@ -231,7 +231,7 @@ $entries = array_entries($key_value_array);
 #### Definition
 
 ```
-array_restore( array $array ) : array
+array_from_entries( array $array ) : array
 ```
 
 The array*restore function restores a new *[key => value]\_ array based on the arrays provided by the given array.
@@ -255,7 +255,7 @@ $entries = [
   ['Computer', 90]
 ];
 
-$key_value_array = array_restore($entries);
+$key_value_array = array_from_entries($entries);
 
 // $key_value_array: [
 //   "Maths"  =>	95,

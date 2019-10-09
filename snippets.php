@@ -137,14 +137,14 @@ function array_entries( array $arr )
 }
 
 /**
- * The array_restore function restores a new [key => value] array based on 
+ * The array_from_entries function restores a new [key => value] array based on 
  * the arrays provided by the given array
  *
  * @param   array  $arr  The array whos arrays are to be restored to a string-keyed [key => value] format
  *
  * @return  array        A new array of keyed properties matching the given arrays items
  */
-function array_restore( array $arr ) {
+function array_from_entries( array $arr ) {
 	$new_array = [];
 
 	foreach( $arr as $entry ) {
