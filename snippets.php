@@ -18,9 +18,14 @@
  */
 function array_some( callable $callback, array $arr )
 {
-    for( $i = 0; $i < count( $arr ); $i++ ) {
-        if ( $callback( $arr[$i], $i ) ) return true;
+
+    $i = 0;
+
+    foreach( $arr as $item ) {
+      if ( $callback( $item, $i ) ) return true;
+      $i++;
     }
+
     return false;
 }
 
@@ -35,9 +40,13 @@ function array_some( callable $callback, array $arr )
  */
 function array_every( callable $callback, array $arr )
 {
-    for( $i = 0; $i < count( $arr ); $i++ ) {
-        if ( !$callback( $arr[$i], $i ) ) return false;
+    $i = 0;
+
+    foreach( $arr as $item ) {
+      if ( !$callback( $item, $i ) ) return false;
+      $i++;
     }
+
     return true;
 }
 
@@ -52,9 +61,14 @@ function array_every( callable $callback, array $arr )
  */
 function array_find( callable $callback, array $arr )
 {
-  for( $i = 0; $i < count( $arr ); $i++ ) {
-    if ( $callback( $arr[$i], $i ) ) return $arr[$i];
+
+  $i = 0;
+
+  foreach( $arr as $item ) {
+    if ( $callback( $item, $i ) ) return $item;
+    $i++;
   }
+
   return null;
 }
 
@@ -94,12 +108,26 @@ function array_sort( array $arr, callable $callback = null )
   $sort;
 
 	do {
+
+    // Check if associative array
+    $associative = array_keys($arr) !== range(0, count($arr) - 1);
+
+    // Convert associative arrays to entries
+    if($associative) {
+      $new_array = [];
+
+      foreach($arr as $key => $value) {
+        $new_array[] = [ $key, $value ];
+      }
+      $arr = $new_array;
+    }
+
 		for ( $i = 1, $sort = false; $i < count( $arr ); $i++ ) {
       // Get current values
       $a = $arr[$i - 1];
       $b = $arr[$i];
 
-      $result = $callback( $a, $b );
+      $result = !$associative ? $callback( $a, $b ) : $callback( $a[1], $b[1] );
             
 			if( $result !== 0 && ( $result > 0 || $result == false ) ) {
 
@@ -112,9 +140,60 @@ function array_sort( array $arr, callable $callback = null )
 
 			}
     }
+
+    // Restore array if orignially associative
+    if( $associative ) {
+      $new_array = [];
+
+      foreach( $arr as $entry ) {
+        [ $key, $value ] = $entry;
+        $new_array[$key] = $value;
+      }
+    
+      $arr = $new_array;
+    }
+
 	} while ( $sort );
 
   return $arr;  
+}
+
+/**
+ * The array_flat function creates a new array with all sub-array elements added into it recursively up to the specified depth.
+ *
+ * @param   array       $arr       The nested array to be flattened
+ * @param   int|INF     $depth     The depth level specifying how deep a nested array structure should be flattened. Defaults to 1.
+ *
+ * @return  array                  The new array with the sub array elements added to it
+ */
+function array_flat( array $arr, $depth = 1 ) {
+
+  $depth_remaining = $depth;
+  $has_sub_arrays = true;
+
+  while( $depth_remaining && $has_sub_arrays ) {
+    
+    $arr = array_reduce( $arr, function($acc, $curr) {
+      if(is_array($curr)) {
+        foreach($curr as $sub_item) $acc[] = $sub_item;
+      } else {
+        $acc[] = $curr;
+      }
+      return $acc;
+    });
+
+    // Check if $arr contains an array
+    $has_sub_arrays = false;
+    foreach($arr as $item) {
+      if(is_array($item)) $has_sub_arrays = true;
+    }
+
+    $depth_remaining--;
+  }
+
+  
+  return $arr;
+
 }
 
 /**
@@ -154,4 +233,3 @@ function array_from_entries( array $arr ) {
 
 	return $new_array;
 }
-

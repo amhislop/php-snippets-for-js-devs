@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "files": [
+      "snippets.php"
+    ]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit --testdox tests"
+  }
+}
