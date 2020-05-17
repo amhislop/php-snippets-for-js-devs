@@ -15,12 +15,15 @@ A collection of immutable array functions for PHP that JS devs know and love.
 - [array_every](##array_every)
 - [array_find](##array_find)
 - [array_sort](##array_sort)
+- [array_flat](##array_flat)
 - [array_entries](##array_entries)
-- [array_restore](##array_restore)
+- [array_from_entries](##array_from_entries)
 
 ## Documentation
 
 ### array_some
+
+---
 
 #### Definition
 
@@ -63,6 +66,8 @@ $result = array_some(function ($num) {
 
 ### array_every
 
+---
+
 #### Definition
 
 ```
@@ -103,6 +108,8 @@ $result = array_every(function ($num) {
 ```
 
 ### array_find
+
+---
 
 #### Definition
 
@@ -145,6 +152,8 @@ $result = array_find(function ($name) {
 
 ### array_sort
 
+---
+
 #### Definition
 
 ```
@@ -185,7 +194,42 @@ $asc_nums = array_sort($nums);
 // $asc_nums: [ 1, 2, 3, 7, 8 ]
 ```
 
+### array_flat
+
+---
+
+#### Definition
+
+```
+array_flat( array $array [, mixed $depth = 1 ] ): array
+```
+
+The array_flat function creates a new array with all sub-array elements added into it recursively up to the specified depth. The predifined INF constant can be passed in to indicate infinate depth.
+
+**JS Equivilant** _Array.flat()_
+
+#### Paramaters
+
+- **array** - The nested array to be flattened
+- **depth** - Specifies how deep a nested array structure should be flattened. Defaults to 1.
+
+#### Return Values
+
+The new array with the sub-array values concatenated into it.
+
+#### Usage
+
+```php
+$data = [ 1, 2, [ 3, 4, [ 5, 6, [ 7, 8 ] ] ] ];
+
+$flattened_array = array_flat( $data, 2 );
+
+// $flattened_array = [ 1, 2, 3, 4, 5, 6, [ 7, 8 ] ];
+```
+
 ### array_entries
+
+---
 
 #### Definition
 
@@ -227,6 +271,8 @@ $entries = array_entries($key_value_array);
 ```
 
 ### array_from_entries
+
+---
 
 #### Definition
 

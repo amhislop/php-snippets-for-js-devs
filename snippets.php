@@ -160,9 +160,8 @@ function array_sort( array $arr, callable $callback = null )
 
 /**
  * The array_flat function creates a new array with all sub-array elements added into it recursively up to the specified depth.
- * 
  *
- * @param   array       $arr       The array to be sorted
+ * @param   array       $arr       The nested array to be flattened
  * @param   int|INF     $depth     The depth level specifying how deep a nested array structure should be flattened. Defaults to 1.
  *
  * @return  array                  The new array with the sub array elements added to it
@@ -233,9 +232,4 @@ function array_from_entries( array $arr ) {
 	}
 
 	return $new_array;
-}
-
-function odd_or_even( $num ) {
-  return $num%2; // Returns 0 for odd and 1 for even
-  // return true;
 }
