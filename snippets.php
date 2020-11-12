@@ -16,7 +16,7 @@
  * 
  * @return  boolean              Returns TRUE if condition in callback is met for at least one array item
  */
-function array_some( callable $callback, array $arr )
+function array_some( callable $callback, array $arr ): bool
 {
 
     $i = 0;
@@ -38,7 +38,7 @@ function array_some( callable $callback, array $arr )
  * 
  * @return  boolean              Returns TRUE if condition in callback is met for all array items
  */
-function array_every( callable $callback, array $arr )
+function array_every( callable $callback, array $arr ): bool
 {
     $i = 0;
 
@@ -80,7 +80,7 @@ function array_find( callable $callback, array $arr )
  *
  * @return  array                The sorted array
  */
-function array_sort( array $arr, callable $callback = null )
+function array_sort( array $arr, callable $callback = null ): array
 {
   if( !$callback ) {
 
@@ -166,15 +166,16 @@ function array_sort( array $arr, callable $callback = null )
  *
  * @return  array                  The new array with the sub array elements added to it
  */
-function array_flat( array $arr, $depth = 1 ) {
+function array_flat( array $arr, $depth = 1 ): array
+{
 
   $depth_remaining = $depth;
   $has_sub_arrays = true;
 
   while( $depth_remaining && $has_sub_arrays ) {
     
-    $arr = array_reduce( $arr, function($acc, $curr) {
-      if(is_array($curr)) {
+    $arr = array_reduce( $arr, function( $acc, $curr ) {
+      if( is_array( $curr ) ) {
         foreach($curr as $sub_item) $acc[] = $sub_item;
       } else {
         $acc[] = $curr;
@@ -184,8 +185,8 @@ function array_flat( array $arr, $depth = 1 ) {
 
     // Check if $arr contains an array
     $has_sub_arrays = false;
-    foreach($arr as $item) {
-      if(is_array($item)) $has_sub_arrays = true;
+    foreach( $arr as $item ) {
+      if( is_array( $item ) ) $has_sub_arrays = true;
     }
 
     $depth_remaining--;
@@ -204,7 +205,7 @@ function array_flat( array $arr, $depth = 1 ) {
  *
  * @return  array        An array of arrays containing the given arays [key => value] pairs
  */
-function array_entries( array $arr )
+function array_entries( array $arr ): array
 {
 	$new_array = [];
 
@@ -223,7 +224,8 @@ function array_entries( array $arr )
  *
  * @return  array        A new array of keyed properties matching the given arrays items
  */
-function array_from_entries( array $arr ) {
+function array_from_entries( array $arr ): array
+{
 	$new_array = [];
 
 	foreach( $arr as $entry ) {
