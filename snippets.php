@@ -233,3 +233,8 @@ function array_from_entries( array $arr ) {
 
 	return $new_array;
 }
+
+function string_includes( string $haystack, string $needle  ): boolean
+{
+  return '' === $needle || false !== strpos( $haystack, $needle );
+}
