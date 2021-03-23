@@ -219,7 +219,7 @@ if( ! function_exists( 'array_entries' ) ) {
     $new_array = [];
     
     foreach($arr as $key => $value) {
-      $new_array[] = [ $key, $value ];
+      $new_array[] = [$key, $value];
     }
     
     return $new_array;
@@ -240,7 +240,7 @@ if( ! function_exists( 'array_from_entries' ) ) {
     $new_array = [];
     
     foreach( $arr as $entry ) {
-      [ $key, $value ] = $entry;
+      [$key, $value] = $entry;
       $new_array[$key] = $value;
     }
     
@@ -248,7 +248,15 @@ if( ! function_exists( 'array_from_entries' ) ) {
   }
 }
 
-function string_includes( string $haystack, string $needle  ): boolean
-{
-  return '' === $needle || false !== strpos( $haystack, $needle );
+if( ! function_exists( 'string_includes' ) ) {
+  function string_includes( string $haystack, string $needle  ): boolean
+  {
+    $new_array = [];
+
+    foreach($arr as $key => $value) {
+      $new_array[] = [ $key, $value ];
+    }
+
+    return $new_array;
+  }
 }
