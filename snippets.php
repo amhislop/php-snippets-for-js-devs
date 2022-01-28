@@ -23,7 +23,7 @@ if( ! function_exists( 'array_some' ) ) {
     $i = 0;
     
     foreach( $arr as $item ) {
-      if ( $callback( $item, $i ) ) return true;
+      if( $callback( $item, $i ) ) return true;
       $i++;
     }
     
@@ -46,7 +46,7 @@ if( ! function_exists( 'array_every' ) ) {
     $i = 0;
     
     foreach( $arr as $item ) {
-      if ( !$callback( $item, $i ) ) return false;
+      if( ! $callback( $item, $i ) ) return false;
       $i++;
     }
     
@@ -70,7 +70,7 @@ if( ! function_exists( 'array_find' ) ) {
     $i = 0;
     
     foreach( $arr as $item ) {
-      if ( $callback( $item, $i ) ) return $item;
+      if( $callback( $item, $i ) ) return $item;
       $i++;
     }
     
@@ -89,7 +89,7 @@ if( ! function_exists( 'array_sort' ) ) {
    */
   function array_sort( array $arr, callable $callback = null ): array
   {
-    if( !$callback ) {
+    if( ! $callback ) {
       
       $type = false;
       
@@ -117,7 +117,7 @@ if( ! function_exists( 'array_sort' ) ) {
     do {
       
       // Check if associative array
-      $associative = array_keys($arr) !== range( 0, count($arr) - 1 );
+      $associative = array_keys( $arr ) !== range( 0, count( $arr ) - 1 );
       
       // Convert associative arrays to entries
       if( $associative ) {
@@ -134,7 +134,7 @@ if( ! function_exists( 'array_sort' ) ) {
         $a = $arr[$i - 1];
         $b = $arr[$i];
         
-        $result = !$associative ? $callback( $a, $b ) : $callback( $a[1], $b[1] );
+        $result = ! $associative ? $callback( $a, $b ) : $callback( $a[1], $b[1] );
         
         if( $result !== 0 && ( $result > 0 || $result == false ) ) {
           
@@ -185,7 +185,7 @@ if( ! function_exists( 'array_flat' ) ) {
       
       $arr = array_reduce( $arr, function( $acc, $curr ) {
         if( is_array( $curr ) ) {
-          foreach($curr as $sub_item) $acc[] = $sub_item;
+          foreach( $curr as $sub_item ) $acc[] = $sub_item;
         } else {
           $acc[] = $curr;
         }
@@ -218,8 +218,8 @@ if( ! function_exists( 'array_entries' ) ) {
   {
     $new_array = [];
     
-    foreach($arr as $key => $value) {
-      $new_array[] = [ $key, $value ];
+    foreach( $arr as $key => $value ) {
+      $new_array[] = [$key, $value];
     }
     
     return $new_array;
@@ -240,7 +240,7 @@ if( ! function_exists( 'array_from_entries' ) ) {
     $new_array = [];
     
     foreach( $arr as $entry ) {
-      [ $key, $value ] = $entry;
+      [$key, $value] = $entry;
       $new_array[$key] = $value;
     }
     
